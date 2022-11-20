@@ -1,5 +1,8 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DisplayController;
+use App\Http\controllers\RegistrationController;
+use App\Http\controllers\CreateData;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,7 +13,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
+Route::group(['middleware' => 'auth'], function(){
+Route::get('/',[DisplayController::class, 'index']);
+Route::get('/blog/{blog}/detail',[DisplayController::class, 'blogDetail'])->name('blog.detail');
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/blog_new',[RegistrationController::class, 'newBlogForm'])->name('blog.new');
+Route::post('/blog_new',[RegistrationController::class, 'newBlog']);
+
+Route::get('/account/{account}/edit',[RegistrationController::class, 'accountEditForm'])->name('account.edit');
+Route::post('/account/{account}/edit',[RegistrationController::class, 'accountEdit']);
+
+Route::get('/delete_form/{blog}',[RegistrationController::class, 'deleteBlogForm'])->name('delete.blog');
 });
