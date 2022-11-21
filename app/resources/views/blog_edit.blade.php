@@ -17,7 +17,7 @@
                             </ul>
                         </div>
                         @endif
-                        <form action="{{ route('create.spend')}}" method="post">
+                        <form action="" method="post">
                             @csrf
                             <label for='amount'>画像</label>
                                 <input type='text' class='form-control' name='amount' value=""/>

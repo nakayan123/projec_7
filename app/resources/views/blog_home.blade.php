@@ -2,12 +2,12 @@
 @section('content')
 <div class="row justify-content-around mt-3">
     <div class="card" style="width: 18rem;">
-        <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/062.webp" class="card-img-top" alt="Chicago Skyscrapers"/>
+    @foreach($userId as $userid)
+    <img src="{{ asset('storage/' . $userid->image) }}" />
         <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <h5 class="card-title">フォロワー</h5>
         </div>
-        @foreach($userId as $userid)
+        
         <ul class="list-group list-group-light list-group-small">
             <li class="list-group-item px-4">{{ $userid->name }}</li>
             <li class="list-group-item px-4">競技：{{ $userid->competition }}</li>
@@ -27,13 +27,9 @@
     <div class="card" style="width: 50rem;">
         <div class="row g-0">
             <div class="col-md-4">
-            <img
-                src="https://mdbcdn.b-cdn.net/wp-content/uploads/2020/06/vertical.webp"
-                alt="Trendy Pants and Shoes"
-                class="img-fluid rounded-start"
-            />
+            <img src="{{ asset('storage/' . $blogId['img']) }}" id="blog_img"/>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-7" id="text">
                 <div class="card-body">
                     <h5 class="card-title"></h5>
                     <p class="card-text">日程：{{ $blogId['date'] }}</p>
@@ -43,16 +39,16 @@
                     <label for='comment' class='mt-2'>コメント</label>
                     <div class="col-md-3 scroll">
                         <div name='comment'></div>
-                        <div class="row justify-content-around">
-                        <form action="" method="GET">
-                            <input type="text" name="comment" value="">
-                            <input type="submit" value="コメント投稿">
-                        </form>
-                        </div>
+                    </div>
+                    <div class="row justify-content-around">
+                    <form action="" method="GET">
+                        <input type="text" name="comment" value="">
+                        <input type="submit" value="コメント投稿">
+                    </form>
                     </div>
                     <p class="card-text">
                     @if( Auth::user()->role === 0 && Auth::user()->id === $userid->id)
-                    <a href="">
+                    <a href="{{ route('edit.blog',['blog' => $blogId]) }}">
                         <button type="button" class="btn btn-success btn-rounded">編集</button>
                     </a>
                     <a href="{{ route('delete.blog',['blog' => $blogId]) }}">
@@ -66,6 +62,17 @@
     </div>    
 </div>
 <style>
+    #blog_img{
+    width: 300px;
+    height: 400px;
+    background-size: cover;
+    object-fit: cover;
+    object-position: 100% 5%;
+    position: relative;
+    }
+    #text{
+        margin-left: 30px;
+    }
     .scroll{
   height: 80px;
   overflow: auto;

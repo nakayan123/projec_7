@@ -17,10 +17,13 @@
                             </ul>
                         </div>
                         @endif
-                        <form action="" method="post">
+                        <form action="" method="post" enctype='multipart/form-data'>
                             @csrf
-                            <!-- <label for='img'>画像</label>
-                                <input type='text' class='form-control' name='' value=""/> -->
+                            <label for='img'>画像</label>
+                            <div>
+                                <input type="file" name="img" />
+                                {{ csrf_field() }}
+                            </div>
                             <label for='date' class='mt-2'>試合日</label>
                                 <input type='date' class='form-control' name='date' id='date' value="{{ old('date')}}"/>
                                 <label for='amount'>会場</label>

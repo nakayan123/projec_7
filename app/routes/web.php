@@ -25,4 +25,6 @@ Route::get('/account/{account}/edit',[RegistrationController::class, 'accountEdi
 Route::post('/account/{account}/edit',[RegistrationController::class, 'accountEdit']);
 
 Route::get('/delete_form/{blog}',[RegistrationController::class, 'deleteBlogForm'])->name('delete.blog');
+Route::get('/blog/{blog}/edit',[RegistrationController::class, 'blogEditForm'])->name('edit.blog');
+Route::post('/blog/{blog}/edit',[RegistrationController::class, 'blogEdit']);
 });
