@@ -74,11 +74,9 @@ class RegistrationController extends Controller
     
     public function blogEdit(Blog $blog, Request $request) {
         
-        $record = $account;
+        $record = $blog;
         $blog_img = $request->file('img')->store('public');
-                // name属性が'thumbnail'のinputタグをファイル形式に、画像をpublic/avatarに保存
-        // $image_path = $request->file('image')->store('public/avatar/');
-                // 上記処理にて保存した画像に名前を付け、userテーブルのthumbnailカラムに、格納
+              
         $record->img = basename($blog_img);
         $columns = ['date', 'venue', 'text'];
     
@@ -95,5 +93,11 @@ class RegistrationController extends Controller
         $blog -> delete();
     
         return redirect('/');
-    }  
+    } 
+    public function ajaxForm(){
+        $comment = ;
+    $comments = Comment::orderBy('created_at', 'desc')->get();
+    $json = ["comments" => $comments];
+    return response()->json($json);
+}
 }

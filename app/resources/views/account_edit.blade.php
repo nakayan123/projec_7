@@ -17,11 +17,9 @@
                             </ul>
                         </div>
                         @endif
-                        <form action="{{ route('account.edit',[ 'account' => $account ])}}" method="post" enctype='multipart/form-data'>
+                        <form action="{{ route('account.edit',[ 'account' => $account ]) }}" method="post" enctype='multipart/form-data'>
                             @csrf
-                            <!-- <label for='img'>画像</label>
-                                <input type='text' class='form-control' name='img' value=""/> -->
-                            <label for='img'>画像</label>
+                            <label for='image'>画像</label>
                             <div>
                                 <input type="file" name="image" />
                                 {{ csrf_field() }}

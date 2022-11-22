@@ -12,20 +12,16 @@
     <div class="card mb-3 d-flex container" style="max-width: 540px;">
         <div class="row g-0">
             <div class="col-md-4">
-            <img
-                src="https://mdbcdn.b-cdn.net/wp-content/uploads/2020/06/vertical.webp"
-                alt="Trendy Pants and Shoes"
-                class="img-fluid rounded-start"
-            />
+                <img src="{{ asset('storage/' . $blogs->img ) }}" id="blog_image"/>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-8" id="card">
                 <div class="card-body">
                     <h5 class="card-title">{{ $blogs->name }}</h5>
                     <p class="card-text">競技：{{ $blogs->competition }}</p>
-                    <p class="card-text">日程：{{ $blogs->text }}</p>
+                    <p class="card-text">日程：{{ $blogs->date }}</p>
                     <p class="card-text">
                     <a href="{{ route('blog.detail',['blog' => $blogs->id]) }}">詳細</a>
-                    <small class="text-muted ml-2">{{ $blogs->date }}</small>
+                    <!-- <small class="text-muted ml-2"></small> -->
                     </p>
                 </div>
             </div>
@@ -50,3 +46,19 @@
     </div>
     @endsection
 </div>
+<style>
+    #blog_image{
+    margin: 5px;
+    margin-left: -5px;
+    width: 200px;
+    height: 260px;
+    background-size: cover;
+    object-fit: cover;
+    object-position: 100% 5%;
+    position: relative;
+    }
+    #card{
+    /* margin-left: 5px; */
+    }
+    
+</style>

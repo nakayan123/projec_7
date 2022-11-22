@@ -16,10 +16,12 @@
                 <p>{!! nl2br(e($userid->memo)) !!}</p>
             </li>
         </ul>
+        <div class="card-body">
+        <a href="#" class="card-link">フォロー</a>
+        </div>
         @if( Auth::user()->role === 0 && Auth::user()->id === $userid->id)
         <div class="card-body">
             <a href="{{ route('account.edit',['account' => Auth::user()->id]) }}" class="card-link">アカウント編集</a>
-            <a href="#" class="card-link">Another link</a>
         </div>
         @endif
         @endforeach
@@ -37,13 +39,15 @@
                     <p class="card-text">内容
                     <p class="col-sm">{!! nl2br(e($blogId['text'])) !!}</p>
                     <label for='comment' class='mt-2'>コメント</label>
-                    <div class="col-md-3 scroll">
-                        <div name='comment'></div>
+                    <div class="form-control col-md-12 scroll">
+                        <div id="comment-data"></div>
                     </div>
-                    <div class="row justify-content-around">
-                    <form action="" method="GET">
+                    @section('js')
+                        <script src="{{ asset('js/comment.js') }}"></script>
+                    @endsection
+                    <form action="{{ route('ajax.form') }}" method="get">
                         <input type="text" name="comment" value="">
-                        <input type="submit" value="コメント投稿">
+                        <input type="submit" class="ml-2 mt-2" id="btn" value="コメント投稿">
                     </form>
                     </div>
                     <p class="card-text">
@@ -61,8 +65,48 @@
         </div>
     </div>    
 </div>
+<script>
+    $(function() {
+
+$("#btn").click(function(){
+function get_data() {
+    $.ajax({
+        url: "result/ajax/",
+        dataType: "json",
+        success: data => {
+    $("#comment-data")
+        .find(".comment-visible")
+        .remove();
+
+    for (var i = 0; i < data.comments.length; i++) {
+        var html = `
+                    <div class="media comment-visible">
+                        <div class="media-body comment-body">
+                            <div class="row">
+                                <span class="comment-body-user" id="name">${data.comments[i].name}</span>
+                                <span class="comment-body-time" id="created_at">${data.comments[i].created_at}</span>
+                            </div>
+                            <span class="comment-body-content" id="comment">${data.comments[i].comment}</span>
+                        </div>
+                    </div>
+                `;
+
+        $("#comment-data").append(html);
+    }
+},
+        error: () => {
+            alert("ajax Error");
+        }
+    });
+
+    setTimeout("get_data()", 5000);
+}
+});
+});
+</script>
 <style>
     #blog_img{
+    margin: 5px;
     width: 300px;
     height: 400px;
     background-size: cover;

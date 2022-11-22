@@ -14,7 +14,7 @@
                 @endforeach
               </div>
             @endif
-            <form action="{{ url('/')) }}" method="POST">
+            <form action="{{ route('register') }}" method="POST">
               @csrf
               <div class="form-group">
                 <label for="email">メールアドレス</label>
@@ -28,10 +28,10 @@
                 <label for="competition">競技</label>
                 <input type="text" class="form-control" id="competition" name="competition" value="{{ old('competition') }}" />
               </div>
-              <label for='type' class='mt-2'>チームor個人 </label>
-              <select name='type_id' class='form-control' value=>
-                <option value='0'>チーム</option>
+              <label for='role' class='mt-2'>チームor個人 </label>
+              <select name='role' class='form-control'>
                 <option value="1">個人</option>
+                <option value='0'>チーム</option>
               </select>
               <div class="form-group">
                 <label for="password">パスワード</label>

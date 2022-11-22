@@ -52,4 +52,10 @@
         @yield('content')
     </div>
 </body>
+<style>
+    body{
+        background-image: url(/image/IMG2.jpg);
+        width: 100vw;
+    }
+</style>
 </html>

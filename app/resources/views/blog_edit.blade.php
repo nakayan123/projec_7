@@ -17,16 +17,19 @@
                             </ul>
                         </div>
                         @endif
-                        <form action="" method="post">
+                        <form action="{{ route('edit.blog',[ 'blog' => $blog ])}}" method="post" enctype='multipart/form-data'>
                             @csrf
-                            <label for='amount'>画像</label>
-                                <input type='text' class='form-control' name='amount' value=""/>
+                            <img src="{{ asset('storage/' . $blog['img']) }}" id="blog_edit"/>
+                            <div>
+                                <input type="file" name="img" />
+                                {{ csrf_field() }}
+                            </div>
                             <label for='date' class='mt-2'>試合日</label>
-                                <input type='date' class='form-control' name='date' id='date' value="{{ old('date')}}"/>
-                                <label for='date' class='mt-2'>会場</label>
-                                <input type='date' class='form-control' name='date' id='date' value=""/>
-                            <label for='comment' class='mt-2'>メモ</label>
-                                <textarea class='form-control' name='comment'></textarea>
+                                <input type='date' class='form-control' name='date' id='date' value="{{ $blog['date']}}"/>
+                                <label for='amount'>会場</label>
+                            <input type='text' class='form-control' name='venue' value="{{ $blog['venue']}}"/>
+                            <label for='text' class='mt-2'>メモ</label>
+                                <textarea class='form-control' name='text'>{{ $blog['text']}}</textarea>
                             <div class='row justify-content-center'>
                                 <button type='submit' class='btn btn-primary w-25 mt-3'>登録</button>
                             </div> 
@@ -37,3 +40,13 @@
         </div>
     </main>
 @endsection
+<style>
+    #blog_edit{
+        width: 200px;
+    height: 260px;
+    background-size: cover;
+    object-fit: cover;
+    object-position: 100% 5%;
+    position: relative;
+    }
+</style>

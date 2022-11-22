@@ -27,16 +27,15 @@ class DisplayController extends Controller
           ->orderBy('blogs.created_at','desc')
           ->paginate(3);
         return view('home',[
-            'blog' => $blog
+            'blog' => $blog,
         ]);
         }else{
             $blog = $query->orderBy('blogs.created_at','desc')
             ->paginate(3);
             return view('home',[
-                'blog' => $blog
+                'blog' => $blog,
             ]);
         }
-
     }
     public function blogDetail(Blog $blog){
         $blogs = $blog->user_id;

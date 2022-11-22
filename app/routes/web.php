@@ -15,7 +15,8 @@ use App\Http\controllers\CreateData;
 */
 Auth::routes();
 Route::group(['middleware' => 'auth'], function(){
-Route::get('/',[DisplayController::class, 'index']);
+Route::get('/',[DisplayController::class, 'index'])->name('home.form');
+Route::get('/result/ajax', [RegistrationController::class, 'ajaxForm'])->name('ajax.form');
 Route::get('/blog/{blog}/detail',[DisplayController::class, 'blogDetail'])->name('blog.detail');
 
 Route::get('/blog_new',[RegistrationController::class, 'newBlogForm'])->name('blog.new');
@@ -25,6 +26,7 @@ Route::get('/account/{account}/edit',[RegistrationController::class, 'accountEdi
 Route::post('/account/{account}/edit',[RegistrationController::class, 'accountEdit']);
 
 Route::get('/delete_form/{blog}',[RegistrationController::class, 'deleteBlogForm'])->name('delete.blog');
+
 Route::get('/blog/{blog}/edit',[RegistrationController::class, 'blogEditForm'])->name('edit.blog');
 Route::post('/blog/{blog}/edit',[RegistrationController::class, 'blogEdit']);
 });
