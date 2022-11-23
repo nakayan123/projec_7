@@ -45,7 +45,7 @@
                     @section('js')
                         <script src="{{ asset('js/comment.js') }}"></script>
                     @endsection
-                    <form action="{{ route('ajax.form') }}" method="get">
+                    <form action="{{ route('ajax.form',[ 'blog' => $blogId]) }}" method="get">
                         <input type="text" name="comment" value="">
                         <input type="submit" class="ml-2 mt-2" id="btn" value="コメント投稿">
                     </form>
@@ -71,7 +71,7 @@
 $("#btn").click(function(){
 function get_data() {
     $.ajax({
-        url: "result/ajax/",
+        url: "result/{blog}/ajax/",
         dataType: "json",
         success: data => {
     $("#comment-data")

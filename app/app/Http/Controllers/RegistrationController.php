@@ -94,10 +94,12 @@ class RegistrationController extends Controller
     
         return redirect('/');
     } 
-    public function ajaxForm(){
-        $comment = ;
-    $comments = Comment::orderBy('created_at', 'desc')->get();
-    $json = ["comments" => $comments];
+    public function ajaxForm(Blog $blog){
+        $comment = Auth::user()->id;
+        $blog_comment = $blog->id;
+        
+        $comments = Comment::orderBy('created_at', 'desc')->get();
+        $json = ["comments" => $comments];
     return response()->json($json);
 }
 }
