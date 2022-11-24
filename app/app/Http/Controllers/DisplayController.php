@@ -20,6 +20,7 @@ class DisplayController extends Controller
         ->select('blogs.id','user_id', 'date', 'text', 'img', 'users.id as userId', 'name', 'memo' , 'competition' ,'image')
         ->join('users','blogs.user_id','=','users.id')
         ;
+        // $query->date->format('Y年m月d日');
         if(!empty($keyword))
         {
           $blog = $query->where('name','like','%'.$keyword.'%')
@@ -39,13 +40,19 @@ class DisplayController extends Controller
     }
     public function blogDetail(Blog $blog){
         $blogs = $blog->user_id;
+        $blog_comment = $blog->id;
         $user = DB::table('users')
         ->where('id' , '=', $blogs )
         ->get(); 
-        
+        $comments = DB::table('comments')
+        ->where('blog_id' , '=', $blog_comment )
+        ->orderBy('comments.created_at','desc')
+        ->get();
+
         return view('blog_home',[
             'blogId' => $blog,
-            'userId' => $user
+            'userId' => $user,
+            'commentId' => $comments
         ]);
     }
 }

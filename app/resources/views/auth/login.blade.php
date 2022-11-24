@@ -38,9 +38,7 @@ anything and that is to give it everything."
               </div>
             </form>
           </div>
-          <div class="text-center">
-          <a href="{{ route('password.request') }}">パスワードの変更はこちらから</a>
-        </div>
+ 
         </nav>
       </div>
     </div>

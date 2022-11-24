@@ -21,7 +21,7 @@
                             @csrf
                             <img src="{{ asset('storage/' . $blog['img']) }}" id="blog_edit"/>
                             <div>
-                                <input type="file" name="img" />
+                                <input type="file" name="img"/>
                                 {{ csrf_field() }}
                             </div>
                             <label for='date' class='mt-2'>試合日</label>
@@ -46,7 +46,6 @@
     height: 260px;
     background-size: cover;
     object-fit: cover;
-    object-position: 100% 5%;
     position: relative;
     }
 </style>

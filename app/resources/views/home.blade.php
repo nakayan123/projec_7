@@ -16,12 +16,11 @@
             </div>
             <div class="col-md-8" id="card">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $blogs->name }}</h5>
+                    <h3 class="card-title" id="line">{{ $blogs->name }}</h3>
                     <p class="card-text">競技：{{ $blogs->competition }}</p>
                     <p class="card-text">日程：{{ $blogs->date }}</p>
                     <p class="card-text">
                     <a href="{{ route('blog.detail',['blog' => $blogs->id]) }}">詳細</a>
-                    <!-- <small class="text-muted ml-2"></small> -->
                     </p>
                 </div>
             </div>
@@ -54,11 +53,14 @@
     height: 260px;
     background-size: cover;
     object-fit: cover;
-    object-position: 100% 5%;
     position: relative;
     }
     #card{
     /* margin-left: 5px; */
     }
-    
+    #line {
+    text-decoration:
+     underline;
+     font-family: serif;
+    }
 </style>

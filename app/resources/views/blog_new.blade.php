@@ -21,15 +21,15 @@
                             @csrf
                             <label for='img'>画像</label>
                             <div>
-                                <input type="file" name="img" />
+                                <input type="file" name="img" value="{{ old('img')}}"/>
                                 {{ csrf_field() }}
                             </div>
                             <label for='date' class='mt-2'>試合日</label>
                                 <input type='date' class='form-control' name='date' id='date' value="{{ old('date')}}"/>
                                 <label for='amount'>会場</label>
-                                <input type='text' class='form-control' name='venue' value=""/>
+                                <input type='text' class='form-control' name='venue' value="{{ old('venue')}}"/>
                             <label for='text' class='mt-2'>メモ</label>
-                                <textarea class='form-control' name='text'></textarea>
+                                <textarea class='form-control' name='text'>{{ old('text')}}</textarea>
                             <div class='row justify-content-center'>
                                 <button type='submit' class='btn btn-primary w-25 mt-3'>登録</button>
                             </div> 

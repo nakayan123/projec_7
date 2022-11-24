@@ -8,6 +8,7 @@ use App\Comment;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\CreateData;
 use Carbon\Carbon;
 
 class RegistrationController extends Controller
@@ -17,7 +18,7 @@ class RegistrationController extends Controller
         return view('blog_new');
         }  
     
-    public function newBlog(Request $request) {
+    public function newBlog(CreateData $request) {
         
         $blog = new Blog;
         $record = $blog;
@@ -72,11 +73,10 @@ class RegistrationController extends Controller
         ]);
         }  
     
-    public function blogEdit(Blog $blog, Request $request) {
+    public function blogEdit(Blog $blog, CreateData $request) {
         
         $record = $blog;
         $blog_img = $request->file('img')->store('public');
-              
         $record->img = basename($blog_img);
         $columns = ['date', 'venue', 'text'];
     
@@ -94,11 +94,16 @@ class RegistrationController extends Controller
     
         return redirect('/');
     } 
-    public function ajaxForm(Blog $blog){
-        $comment = Auth::user()->id;
-        $blog_comment = $blog->id;
-        
-        $comments = Comment::orderBy('created_at', 'desc')->get();
+    public function ajaxForm(Request $request){
+        $user = Auth::user();
+        $comment = $request->input('comment');
+        $blog_id = $request->input('blog_id');
+        $comments = Comment::create([
+            'user_id' => $user->id,
+            'blog_id' => $blog_id,
+            'comment' => $comment
+        ]);
+        // $comments = Comment::orderBy('created_at', 'desc')->get();
         $json = ["comments" => $comments];
     return response()->json($json);
 }
