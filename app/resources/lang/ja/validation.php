@@ -150,6 +150,9 @@ return [
         'date' => '日程',
         'venue' => '会場',
         'text' => 'メモ',
+        'name' => 'チーム名',
+        'competition' => '競技',
+        'memo' => 'チーム情報',
     ],
 
 ];

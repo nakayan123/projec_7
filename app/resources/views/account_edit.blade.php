@@ -30,7 +30,7 @@
                                 <input type='text' class='form-control' name='name' value="{{ $account['name'] }}"/>
                             <label for='competition'>競技</label>
                                 <input type='text' class='form-control' name='competition' value="{{ $account['competition'] }}"/>
-                            <label for='memo' class='mt-2'>メモ</label>
+                            <label for='memo' class='mt-2'>チーム情報</label>
                                 <textarea class='form-control' name='memo'>{{ $account['memo'] }}</textarea>
                             <div class='row justify-content-center'>
                                 <button type='submit' class='btn btn-success btn-rounded w-25 mt-3'>変更</button>

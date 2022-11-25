@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateData;
+use App\Http\Requests\CreateCreate;
 use Carbon\Carbon;
 
 class RegistrationController extends Controller
@@ -41,7 +42,7 @@ class RegistrationController extends Controller
         ]);
     }  
     
-    public function accountEdit(User $account, Request $request)
+    public function accountEdit(User $account, CreateCreate $request)
     {   
         $record = $account;
         if(!empty($request->image)){

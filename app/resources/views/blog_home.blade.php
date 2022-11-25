@@ -4,10 +4,6 @@
     <div class="card" style="width: 18rem;">
         @foreach($userId as $userid)
         <img src="{{ asset('storage/' . $userid->image) }}" />
-        <div class="card-body">
-            <h5 class="card-title">フォロワー</h5>
-        </div>
-        
         <ul class="list-group list-group-light list-group-small">
             <li class="list-group-item px-4">{{ $userid->name }}</li>
             <li class="list-group-item px-4">競技：{{ $userid->competition }}</li>
@@ -17,7 +13,6 @@
             </li>
         </ul>
         <div class="card-body" id="card">
-            <a href="#" class="card-link">フォロー</a>
         @if( Auth::user()->role === 0 && Auth::user()->id === $userid->id)
             <a href="{{ route('account.edit',['account' => Auth::user()->id]) }}" class="card-link">アカウント編集</a>
         @endif
@@ -107,9 +102,6 @@
                     $('#error_message').append(`<li>${errorMessage}</li>`);
                 }
         });
-    });
-    $('#d_btn').click(function() {
-        alert('削除しました。');
     });
 </script>
 <style>

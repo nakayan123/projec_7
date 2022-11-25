@@ -36,6 +36,7 @@ anything and that is to give it everything."
                   <button type="submit" class="btn btn-primary">送信</button>
                 </div>
               </div>
+              <a href="{{ route('password.request') }}">パスワードの変更はこちらから</a>
             </form>
           </div>
  
