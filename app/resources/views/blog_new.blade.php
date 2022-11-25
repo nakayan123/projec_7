@@ -31,7 +31,7 @@
                             <label for='text' class='mt-2'>メモ</label>
                                 <textarea class='form-control' name='text'>{{ old('text')}}</textarea>
                             <div class='row justify-content-center'>
-                                <button type='submit' class='btn btn-primary w-25 mt-3'>登録</button>
+                                <button type='submit' class='btn btn-success btn-rounded w-25 mt-3'>登録</button>
                             </div> 
                         </form>
                     </div>

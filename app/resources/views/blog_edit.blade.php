@@ -19,9 +19,11 @@
                         @endif
                         <form action="{{ route('edit.blog',[ 'blog' => $blog ])}}" method="post" enctype='multipart/form-data'>
                             @csrf
+                            <div id="blog_img">
                             <img src="{{ asset('storage/' . $blog['img']) }}" id="blog_edit"/>
+                            </div>
                             <div>
-                                <input type="file" name="img"/>
+                                <input type="file" name="img" value="{{ $blog['img']}}"/>
                                 {{ csrf_field() }}
                             </div>
                             <label for='date' class='mt-2'>試合日</label>
@@ -31,7 +33,7 @@
                             <label for='text' class='mt-2'>メモ</label>
                                 <textarea class='form-control' name='text'>{{ $blog['text']}}</textarea>
                             <div class='row justify-content-center'>
-                                <button type='submit' class='btn btn-primary w-25 mt-3'>登録</button>
+                                <button type='submit' class='btn btn-success btn-rounded w-25 mt-3'>変更</button>
                             </div> 
                         </form>
                     </div>
@@ -41,8 +43,11 @@
     </main>
 @endsection
 <style>
+    #blog_img{
+        text-align : center;
+    }
     #blog_edit{
-        width: 200px;
+    width: 200px;
     height: 260px;
     background-size: cover;
     object-fit: cover;

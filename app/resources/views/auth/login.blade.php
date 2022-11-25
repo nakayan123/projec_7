@@ -45,7 +45,9 @@ anything and that is to give it everything."
   </div>
 @endsection
 <style>
+  @import url('https://fonts.googleapis.com/css?family=Anton');
   .moji{
+    font-family: 'Anton', sans-serif;
     margin-top: 100px;
     font-size: 50px;
     font-weight: 600;

@@ -16,7 +16,7 @@
                 <p>{!! nl2br(e($userid->memo)) !!}</p>
             </li>
         </ul>
-        <div class="card-body">
+        <div class="card-body" id="card">
             <a href="#" class="card-link">フォロー</a>
         @if( Auth::user()->role === 0 && Auth::user()->id === $userid->id)
             <a href="{{ route('account.edit',['account' => Auth::user()->id]) }}" class="card-link">アカウント編集</a>
@@ -51,7 +51,7 @@
                     </div>
                     <form action="{{ route('ajax.form') }}" method="post">
                     @csrf
-                        <input type="text" name="comment" id="text" value="">
+                        <input type="text" name="comment" id="text_id" value="">
                         <input type="hidden" name="blog_id" value="{{ $blogId['id'] }}">
                         <input type="button" class="ml-2 mt-2" id="button" value="コメント投稿">
                     </form>
@@ -62,7 +62,7 @@
                         <button type="button" class="btn btn-success btn-rounded" id="p_btn">編集</button>
                     </a>
                     <a href="{{ route('delete.blog',['blog' => $blogId]) }}">
-                        <button type="button" class="btn btn-success btn-rounded">削除</button>
+                        <button type="button" class="btn btn-success btn-rounded" id="d_btn">削除</button>
                     </a>
                     @endif
                     </p>
@@ -75,12 +75,7 @@
     $('#button').click(function() {
         var blog_id = $('input[name="blog_id"]').val();
         var comment = $('input[name="comment"]').val();
-        var textForm = document.getElementById("text");
-        function clearText() {
-            textForm.value = '';
-            }
-        console.log(1);
-        $.ajax({
+    $.ajax({
             headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           },
@@ -90,6 +85,7 @@
             data: {'comment': comment,
                     'blog_id': blog_id},
         }).done(function (data) {
+                var v = $("#text_id").val("");
                     var html = `
                                 <div class="media comment-visible">
                                     <div class="media-body comment-body">
@@ -100,7 +96,7 @@
                                     </div>
                                 </div>
                             `;
-                    $("#comment-data").prepend(html); 
+                    $("#comment-data").prepend(html);
         }).fail(function (jqXHR, textStatus, errorThrown) {
                 //通信が失敗したときの処理
                 $('#error_message').empty();
@@ -111,6 +107,9 @@
                     $('#error_message').append(`<li>${errorMessage}</li>`);
                 }
         });
+    });
+    $('#d_btn').click(function() {
+        alert('削除しました。');
     });
 </script>
 <style>
@@ -135,6 +134,9 @@
     }
     #p_btn{
         margin-right: 25px;
+    }
+    #card{
+        height: 50px;
     }
 </style>
 @endsection

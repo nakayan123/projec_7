@@ -23,9 +23,9 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" id="nav">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/') }}" id="title">
                 ←WATCH SPORTS→
                 </a>
             </div>
@@ -53,10 +53,18 @@
         @yield('content')
     </div>
 </body>
+
 <style>
     body{
         background-image: url(/image/IMG2.jpg);
         width: 100vw;
+    }
+    #btn {
+     margin-right: 10px;
+    }
+    @import url('https://fonts.googleapis.com/css?family=Amatic+SC:700');
+    #title{
+        font-family: 'Anton', sans-serif;
     }
 </style>
 </html>
