@@ -3,6 +3,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DisplayController;
 use App\Http\controllers\RegistrationController;
 use App\Http\controllers\CreateData;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,26 +15,20 @@ use App\Http\controllers\CreateData;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('password/reset', [ResetPasswordController::class, 'reset']);
 Auth::routes();
 Route::group(['middleware' => 'auth'], function(){
+Route::resource('/post', 'ArticleController');
 Route::get('/',[DisplayController::class, 'index'])->name('home.form');
 Route::post('/result/ajax', [RegistrationController::class, 'ajaxForm'])->name('ajax.form');
 Route::get('/blog/{blog}/detail',[DisplayController::class, 'blogDetail'])->name('blog.detail');
 
-Route::get('/blog_new',[RegistrationController::class, 'newBlogForm'])->name('blog.new');
-Route::post('/blog_new',[RegistrationController::class, 'newBlog']);
 
 Route::get('/account/{account}/edit',[RegistrationController::class, 'accountEditForm'])->name('account.edit');
 Route::post('/account/{account}/edit',[RegistrationController::class, 'accountEdit']);
-
-Route::get('/delete_form/{blog}',[RegistrationController::class, 'deleteBlogForm'])->name('delete.blog');
-
-Route::get('/blog/{blog}/edit',[RegistrationController::class, 'blogEditForm'])->name('edit.blog');
-Route::post('/blog/{blog}/edit',[RegistrationController::class, 'blogEdit']);
 });
 Auth::routes();
 

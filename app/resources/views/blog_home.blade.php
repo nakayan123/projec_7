@@ -53,12 +53,14 @@
                     </div>
                     <p class="text-right">
                     @if( Auth::user()->role === 0 && Auth::user()->id === $userid->id)
-                    <a href="{{ route('edit.blog',['blog' => $blogId]) }}">
+                    <a href="{{ route('post.edit',['post' => $blogId]) }}">
                         <button type="button" class="btn btn-success btn-rounded" id="p_btn">編集</button>
                     </a>
-                    <a href="{{ route('delete.blog',['blog' => $blogId]) }}">
-                        <button type="button" class="btn btn-success btn-rounded" id="d_btn">削除</button>
-                    </a>
+                    <form action="{{ route('post.destroy',['post' => $blogId ]) }}" method="post">
+                        @csrf
+                        @method('delete')
+                        <input type="submit" value="削除" class="btn btn-success btn-rounded" id="d_btn" onclick='return confirm("削除しますか？");'>
+                    </form>
                     @endif
                     </p>
                 </div>

@@ -17,8 +17,9 @@
                             </ul>
                         </div>
                         @endif
-                        <form action="{{ route('edit.blog',[ 'blog' => $blog ])}}" method="post" enctype='multipart/form-data'>
+                        <form action="{{ route('post.update',[ 'post' => $blog ])}}" method="post" enctype='multipart/form-data'>
                             @csrf
+                            @method('patch')
                             <div id="blog_img">
                             <img src="{{ asset('storage/' . $blog['img']) }}" id="blog_edit"/>
                             </div>
@@ -33,7 +34,7 @@
                             <label for='text' class='mt-2'>メモ</label>
                                 <textarea class='form-control' name='text'>{{ $blog['text']}}</textarea>
                             <div class='row justify-content-center'>
-                                <button type='submit' class='btn btn-success btn-rounded w-25 mt-3'>変更</button>
+                                <input type='submit' value="変更" class='btn btn-success btn-rounded w-25 mt-3'>
                             </div> 
                         </form>
                     </div>

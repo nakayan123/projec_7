@@ -33,7 +33,7 @@
             <a href="{{ route('account.edit',['account' => Auth::user()->id]) }}">
                 <button type="button" class="btn btn-success btn-rounded">アカウント編集</button>
             </a>
-            <a href="{{ route('blog.new') }}">
+            <a href="{{ route('post.create') }}">
                 <button type="button" class="btn btn-success btn-rounded">新規投稿</button>
             </a>
         </div>

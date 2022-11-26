@@ -17,7 +17,7 @@
                             </ul>
                         </div>
                         @endif
-                        <form action="" method="post" enctype='multipart/form-data'>
+                        <form action="{{ route('post.store')}}" method="post" enctype='multipart/form-data'>
                             @csrf
                             <label for='img'>画像</label>
                             <div>

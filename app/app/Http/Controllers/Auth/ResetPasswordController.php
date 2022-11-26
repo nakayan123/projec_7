@@ -18,6 +18,12 @@ class ResetPasswordController extends Controller
     | explore this trait and override any methods you wish to tweak.
     |
     */
+    public function showResetForm(Request $request, $token = null)
+{
+    return view('auth.passwords.reset')->with(
+        ['token' => $token, 'email' => $request->email]
+    ); 
+}
 
     use ResetsPasswords;
 
@@ -26,5 +32,5 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/home';
 }
