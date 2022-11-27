@@ -56,5 +56,6 @@ interface PasswordBroker
      * @param  \Closure  $callback
      * @return mixed
      */
+    
     public function reset(array $credentials, Closure $callback);
 }

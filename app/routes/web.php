@@ -31,23 +31,3 @@ Route::get('/blog/{blog}/detail',[DisplayController::class, 'blogDetail'])->name
 Route::get('/account/{account}/edit',[RegistrationController::class, 'accountEditForm'])->name('account.edit');
 Route::post('/account/{account}/edit',[RegistrationController::class, 'accountEdit']);
 });
-// Auth::routes();
-
-// Route::get('/home', 'HomeController@index')->name('home');
-// // パスワードリセット関連
-// Route::prefix('password_reset')->name('password_reset.')->group(function () {
-//     Route::prefix('email')->name('email.')->group(function () {
-//         // パスワードリセットメール送信フォームページ
-//         Route::get('/', [App\Http\Controllers\PasswordController::class, 'emailFormResetPassword'])->name('form');
-//         // メール送信処理
-//         Route::post('/', [App\Http\Controllers\PasswordController::class, 'sendEmailResetPassword'])->name('send');
-//         // メール送信完了ページ
-//         Route::get('/send_complete', [App\Http\Controllers\PasswordController::class, 'sendComplete'])->name('send_complete');
-//     });
-//     // パスワード再設定ページ
-//     Route::get('/edit', [App\Http\Controllers\PasswordController::class, 'edit'])->name('edit');
-//     // パスワード更新処理
-//     Route::post('/update', [App\Http\Controllers\PasswordController::class, 'update'])->name('update');
-//     // パスワード更新終了ページ
-//     Route::get('/edited', [App\Http\Controllers\PasswordController::class, 'edited'])->name('edited');
-// });

@@ -2,21 +2,23 @@
 
 namespace App\Notifications;
 
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ResetPassword extends Notification
+class VerifyEmail extends Notification
 {
-    public $token;
+    use Queueable;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($token)
+    public function __construct()
     {
-        $this->token = $token;
+        //
     }
 
     /**
@@ -38,11 +40,17 @@ class ResetPassword extends Notification
      */
     public function toMail($notifiable)
     {
+        $verificationUrl = $this->verificationUrl($notifiable);
+
+        if (static::$toMailCallback) {
+            return call_user_func(static::$toMailCallback, $notifiable, $verificationUrl);
+        }
+
         return (new MailMessage)
-            ->subject('パスワード初期化についてのお知らせ')
-            ->view('auth.users.emails.reset', [
-                'restUrl' => route('password.reset', [ 'token' => $this->token])
-    ]);
+                    ->subject('メール認証')
+                    ->view('emails.email_verify', [
+                        'verify_url' => $verificationUrl
+                    ]);
     }
 
     /**

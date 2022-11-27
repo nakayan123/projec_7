@@ -41,4 +41,8 @@ class SendEmailRequest extends FormRequest
             'email' => 'メールアドレス',
         ];
     }
+    protected function validateEmail(Request $request)
+{
+    $this->validate($request, ['email' => 'required|email']);
+}
 }
