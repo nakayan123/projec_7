@@ -1,7 +1,8 @@
 @extends('layouts.layout')
+
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" id="pass">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('パスワードリセット') }}</div>
@@ -33,7 +34,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('パスワードリセットのリンク送信') }}
+                                    {{ __('パスワードリセットリンク送信') }}
                                 </button>
                             </div>
                         </div>
@@ -43,4 +44,9 @@
         </div>
     </div>
 </div>
+<style>
+    #pass{
+        margin-top: 200px !important;
+    }
+</style>
 @endsection

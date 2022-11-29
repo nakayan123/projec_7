@@ -51,7 +51,7 @@
                         <input type="button" class="ml-2 mt-2" id="button" value="コメント投稿">
                     </form>
                     </div>
-                    <p class="text-right">
+                    <p class="text-left">
                     @if( Auth::user()->role === 0 && Auth::user()->id === $userid->id)
                     <a href="{{ route('post.edit',['post' => $blogId]) }}">
                         <button type="button" class="btn btn-success btn-rounded" id="p_btn">編集</button>

@@ -3,8 +3,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DisplayController;
 use App\Http\controllers\RegistrationController;
 use App\Http\controllers\CreateData;
-// use App\Http\Controllers\Auth\ForgotPasswordController;
-// use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\PasswordController;
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +22,8 @@ Route::get('password/reset/{token}', [ResetPasswordController::class, 'showReset
 Route::post('password/reset', [ResetPasswordController::class, 'reset']);
 Auth::routes();
 Route::group(['middleware' => 'auth'], function(){
-Route::resource('/post', 'ArticleController');
+Route::resource('/post', 'ArticleController', ['only' => ['create','store','edit','update','destroy']]);
+Route::get('/post', function () {return redirect('/');});
 Route::get('/',[DisplayController::class, 'index'])->name('home.form');
 Route::post('/result/ajax', [RegistrationController::class, 'ajaxForm'])->name('ajax.form');
 Route::get('/blog/{blog}/detail',[DisplayController::class, 'blogDetail'])->name('blog.detail');
@@ -31,3 +32,8 @@ Route::get('/blog/{blog}/detail',[DisplayController::class, 'blogDetail'])->name
 Route::get('/account/{account}/edit',[RegistrationController::class, 'accountEditForm'])->name('account.edit');
 Route::post('/account/{account}/edit',[RegistrationController::class, 'accountEdit']);
 });
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

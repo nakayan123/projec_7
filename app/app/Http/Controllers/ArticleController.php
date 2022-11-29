@@ -16,7 +16,7 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
     }
@@ -42,8 +42,10 @@ class ArticleController extends Controller
         $blog = new Blog;
         $record = $blog;
         $userId = Auth::user()->id;
-        $blog_img = $request->file('img')->store('public');
-        $record->img = basename($blog_img);
+        if(!empty($request->img)){
+            $blog_img = $request->file('img')->store('public');
+            $record->img = basename($blog_img);
+        }
         $record->user_id = $userId;
         $columns = ['date', 'venue', 'text'];
         foreach($columns as $column) {

@@ -24,7 +24,7 @@
                             </div>
                             <div>
                                 <input type="file" name="image" />
-                                {{ csrf_field() }}
+                                @csrf
                             </div>
                             <label for='name'>チーム名</label>
                                 <input type='text' class='form-control' name='name' value="{{ $account['name'] }}"/>

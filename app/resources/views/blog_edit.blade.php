@@ -25,7 +25,7 @@
                             </div>
                             <div>
                                 <input type="file" name="img" value="{{ $blog['img']}}"/>
-                                {{ csrf_field() }}
+                                @csrf
                             </div>
                             <label for='date' class='mt-2'>試合日</label>
                                 <input type='date' class='form-control' name='date' id='date' value="{{ $blog['date']}}"/>

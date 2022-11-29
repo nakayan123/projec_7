@@ -33,7 +33,7 @@ anything and that is to give it everything."
                   <input type="password" class="form-control" id="password" name="password" />
                 </div>
                 <div class="form-group ml-3 mt-4">
-                  <button type="submit" class="btn btn-primary">送信</button>
+                  <button type="submit" class="btn btn-primary" id="log">ログイン</button>
                 </div>
               </div>
               <a href="{{ route('password.request') }}">パスワードの変更はこちらから</a>
@@ -59,5 +59,8 @@ anything and that is to give it everything."
   }
   #login{
     margin-top: 230px;
+  }
+  #log{
+    margin-top: 8px !important;
   }
 </style>

@@ -22,7 +22,7 @@
                             <label for='img'>画像</label>
                             <div>
                                 <input type="file" name="img" value="{{ old('img')}}"/>
-                                {{ csrf_field() }}
+                                @csrf
                             </div>
                             <label for='date' class='mt-2'>試合日</label>
                                 <input type='date' class='form-control' name='date' id='date' value="{{ old('date')}}"/>
